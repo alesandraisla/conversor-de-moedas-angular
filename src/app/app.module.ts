@@ -1,3 +1,4 @@
+import { ConversorModule } from './conversor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,7 +11,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ConversorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
