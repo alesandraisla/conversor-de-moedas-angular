@@ -4,14 +4,17 @@ import { CommonModule } from '@angular/common';
 import { ConversorComponent } from './components';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NumeroDirective } from './directives';
 
 @NgModule({
   declarations: [
-    ConversorComponent
+    ConversorComponent,
+    NumeroDirective
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   exports: [
     ConversorComponent
