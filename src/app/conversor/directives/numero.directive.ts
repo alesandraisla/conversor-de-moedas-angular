@@ -1,11 +1,20 @@
-import { Directive, HostListener } from '@angular/core';
+import { Directive, HostListener, ElementRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 
 @Directive({
-  selector: '[numero]'
+  selector: '[numero]',
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: NumeroDirective,
+    multi: true
+  }]
 })
-export class NumeroDirective {
+export class NumeroDirective implements ControlValueAccessor {
 
-  constructor() { }
+
+  onTouched: any;
+  onChange: any;
+  constructor(private el: ElementRef) { }
 
   /**
    * Implementa evento de keyup para o elemento da diretiva.
@@ -24,6 +33,34 @@ export class NumeroDirective {
     }
 
     $event.target.value = valor;
+    this.onChange(valor);
   }
 
+  /**
+   * Registra função a ser chamada para atualizar valor na model.
+   * 
+   * @param any fn
+   */
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  /**
+   * Registra função a ser chamada para atualizar valor na model para evento touched.
+   * 
+   * @param any fn
+   */
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  /**
+   * Obtém o valor contido na model.
+   * 
+   * @param any value
+   */
+  writeValue(value: any): void {
+    this.el.nativeElement.value = value;
+  }
 }
