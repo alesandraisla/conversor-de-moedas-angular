@@ -5,11 +5,15 @@ import { ConversorComponent } from './components';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NumeroDirective } from './directives';
+import { ModalCotacaoComponent } from './utils';
+import { DataBrPipe } from './pipes/data-br.pipe';
 
 @NgModule({
   declarations: [
     ConversorComponent,
-    NumeroDirective
+    NumeroDirective,
+    ModalCotacaoComponent,
+    DataBrPipe
   ],
   imports: [
     CommonModule,
